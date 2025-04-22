@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:keuangan_rt/base/component.dart';
 import 'package:keuangan_rt/base/helper.dart';
+import 'package:keuangan_rt/controller/auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,9 +13,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final loginController = Get.put(LoginController());
+  dynamic helper = Helper();
+  final Map<String, TextEditingController> inputController = {
+    'username': TextEditingController(),
+    'password': TextEditingController(),
+  };
   @override
   Widget build(BuildContext context) {
-    dynamic helper = Helper();
+
     return MaterialApp(
         title: 'Login',
         home: Scaffold(
@@ -24,12 +33,12 @@ class _LoginState extends State<Login> {
                   height: Helper.screenHeight(context, 40),
                   decoration:
                       // BoxDecoration(color: Color.fromARGB(255, 59, 208, 253)),
-                      BoxDecoration(color: Colors.blue),
+                      BoxDecoration(color: helper.baseColor),
                 ),
                 Container(
                   width: double.infinity,
                   height: Helper.screenHeight(context, 60),
-                  decoration: BoxDecoration(color: Colors.white),
+                  decoration: const BoxDecoration(color: Colors.white),
                 )
               ]),
               ListView(
@@ -39,9 +48,9 @@ class _LoginState extends State<Login> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Component.gapY(context, 2),
+                          gapY(context, 2),
                           Container(
-                            constraints: BoxConstraints(maxWidth: 500),
+                            constraints: const BoxConstraints(maxWidth: 600),
                             child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Column(
@@ -49,84 +58,113 @@ class _LoginState extends State<Login> {
                                   children: [
                                     Text(
                                       'Selamat Datang',
-                                      style: TextStyle(
-                                          color: Colors.white,
+                                      // style: TextStyle(
+                                      //   fontStyle: GoogleFonts.aBeeZee(),
+                                      //     color: Colors.white,
+                                      //     fontSize: 35,
+                                      //     fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.baskervville(
                                           fontSize: 35,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
                                     ),
-                                    Text(
-                                      'Sistem Keuangan Rt.09 / Rw.20',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
-                                    ),
+                                    text(context,
+                                        'Sistem Keuangan Rt.09 / Rw.20',
+                                        fontSize: 14, textColor: Colors.white),
                                   ],
                                 )),
                           ),
-                          Component.gapY(context, 5),
+                          gapY(context, 7),
                           Container(
-                            padding: EdgeInsets.all(20),
-                            height: Helper.screenHeight(context, 51),
-                            constraints: BoxConstraints(maxWidth: 500),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(0, 0, 0, 0.2),
-                                      blurStyle: BlurStyle.solid,
-                                      blurRadius: 20,
-                                      offset: Offset(3, 4))
-                                ]),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                // Text(
-                                //   'Login Form',
-                                //   style: TextStyle(
-                                //       fontSize: 30,
-                                //       color: Color.fromARGB(255, 11, 145, 255),
-                                //       fontWeight: FontWeight.w500),
-                                // )
-                                Image.network(
-                                    width: 200,
-                                    '${helper.baseURL}assets/images/logo/logo.png'),
-                                Component.gapY(context, 3),
-                                TextField(
-                                  decoration:
-                                      InputDecoration(labelText: 'Username'),
-                                ),
-                                Component.gapY(context, 3),
-                                TextField(
-                                  decoration:
-                                      InputDecoration(labelText: 'Kata Sandi'),
-                                ),
-                                Component.gapY(context, 5),
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.blue),
-                                    onPressed: () {},
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.add_to_home_screen,
-                                          color: Colors.white,
-                                        ),
-                                        Component.gapX(context, 2.5),
-                                        Text(
-                                          'Submit',
-                                          style: TextStyle(color: Colors.white),
-                                        )
-                                      ],
-                                    )),
-                                Component.gapY(context, 3),
-                                Text('Jika ada kendala silahkan hubungi admin')
-                              ],
-                            ),
-                          ),
-                          Component.gapY(context, 2.5),
+                              padding: const EdgeInsets.all(20),
+                              height: Helper.screenHeight(context, 45),
+                              constraints: const BoxConstraints(
+                                  maxWidth: 600, minHeight: 400),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        // color: Color.fromARGB(50, 230, 42, 255),
+                                        color: Color.fromRGBO(0, 0, 0, 0.1),
+                                        blurStyle: BlurStyle.solid,
+                                        blurRadius: 20,
+                                        offset: Offset(2, 3))
+                                  ]),
+                              child: LayoutBuilder(
+                                builder: (context, constraints) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Image.network(
+                                          height: Helper.parrentHeight(
+                                              constraints, 20),
+                                          '${helper.baseURL}/assets/images/logo/logo.png'),
+                                      gapYconstrain(constraints, 5),
+                                      divider(context, height: 1.3),
+                                      gapYconstrain(constraints, 10),
+                                      inputText(context,
+                                          height: Helper.parrentHeight(
+                                              constraints, 14),
+                                          width: Helper.parrentWidth(
+                                              constraints, 100),
+                                          fillColor: const Color.fromARGB(
+                                              45, 33, 149, 243),
+                                          borderColor: helper.secondaryColor,
+                                          icons: Icons.assignment_ind_outlined,
+                                          controller:
+                                              inputController['username'],
+                                          label: 'Username'),
+                                      gapYconstrain(constraints, 5),
+                                      inputText(context,
+                                          height: Helper.parrentHeight(
+                                              constraints, 14),
+                                          width: Helper.parrentWidth(
+                                              constraints, 100),
+                                          fillColor: const Color.fromARGB(
+                                              45, 33, 149, 243),
+                                          borderColor: helper.secondaryColor,
+                                          icons: Icons.lock_outline,
+                                          controller:
+                                              inputController['password'],
+                                          label: 'Kata Sandi'),
+                                      gapYconstrain(constraints, 8),
+                                      Obx(
+                                        () => buttonIcon(context, () {
+                                          loginController.goLogin(
+                                              inputController, context);
+                                        },
+                                            height: Helper.parrentHeight(
+                                                constraints, 11),
+                                            width: Helper.parrentWidth(
+                                                constraints, 100),
+                                            borderRadius: 10,
+                                            backgroundColor: helper.baseColor,
+                                            icon:
+                                                loginController.isLoading.value
+                                                    ? Icons.access_time
+                                                    : Icons.login,
+                                            iconColor: Colors.white,
+                                            label:
+                                                loginController.isLoading.value
+                                                    ? 'Loading...'
+                                                    : 'Go Login',
+                                            fontSize: Helper.parrentHeight(
+                                                constraints, 5),
+                                            textColor: Colors.white),
+                                      ),
+                                      gapYconstrain(constraints, 1),
+                                      text(context,
+                                          'Jika ada kendala silahkan hubungi admin',
+                                          fontSize: Helper.parrentHeight(
+                                              constraints, 3.3))
+                                    ],
+                                  );
+                                },
+                              )),
+                          gapY(context, 3),
                           Image.asset(
                             'assets/gambar/showData.jpg',
                             height: Helper.screenHeight(context, 22),

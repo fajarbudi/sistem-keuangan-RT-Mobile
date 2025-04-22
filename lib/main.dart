@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:keuangan_rt/view/login.dart';
 
 void main() {
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        // textTheme: GoogleFonts.maliTextTheme(
+        //   Theme.of(context).textTheme,
+        // ),
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: const Login(),
