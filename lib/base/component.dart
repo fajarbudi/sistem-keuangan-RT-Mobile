@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keuangan_rt/base/helper.dart';
@@ -108,17 +110,23 @@ Widget divider(BuildContext context,
 }
 
 Widget text(BuildContext context, String text,
-    {double fontSize = 15, Color textColor = Colors.black54}) {
+    {double fontSize = 15,
+    Color textColor = Colors.black54,
+    FontWeight fontWeight = FontWeight.w400}) {
   return Text(
     text,
-    style: baseFont(context, fontSize: fontSize, textColor: textColor),
+    style: baseFont(context,
+        fontSize: fontSize, textColor: textColor, fontWeight: fontWeight),
     // style: TextStyle(color: textColor, fontSize: fontSize),
   );
 }
 
 TextStyle baseFont(BuildContext context,
-    {double fontSize = 15, Color textColor = Colors.black54}) {
-  return GoogleFonts.openSans(fontSize: fontSize, color: textColor);
+    {double fontSize = 15,
+    Color textColor = Colors.black54,
+    FontWeight fontWeight = FontWeight.w400}) {
+  return GoogleFonts.openSans(
+      fontSize: fontSize, color: textColor, fontWeight: fontWeight);
 }
 
 SnackBar snackbar(

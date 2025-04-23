@@ -5,6 +5,7 @@ import 'package:keuangan_rt/controller/auth.dart';
 import 'package:keuangan_rt/view/halamanDepan.dart';
 import 'package:keuangan_rt/view/home.dart';
 import 'package:keuangan_rt/view/login.dart';
+import 'package:keuangan_rt/view/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final cekToken = Get.put(CekToken());
+    // final cekToken = Get.put(CekToken());
     // cekToken.cek().then((val) =>
     //     (val == 'Valid Token') ? status.value = true : status.value = false);
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const HalamanDepan(),
+      home: const Splashscreen(),
       // home: Obx(
       //   () => (cekToken.status.value) ? const Home() : const Login(),
       // ),
