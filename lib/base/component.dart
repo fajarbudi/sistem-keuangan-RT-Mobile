@@ -46,7 +46,7 @@ Widget inputText(BuildContext context,
       controller: controller,
       decoration: InputDecoration(
           floatingLabelStyle:
-              baseFont(context, fontSize: 17, textColor: textColor),
+              TextStyle(fontSize: 17, color: textColor),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(color: borderColor)),
@@ -59,8 +59,8 @@ Widget inputText(BuildContext context,
             icons,
             color: textColor,
           ),
-          labelText: label,
-          labelStyle: baseFont(context)),
+        labelText: label,
+      ),
     ),
   );
 }
@@ -88,13 +88,14 @@ Widget buttonIcon(BuildContext context, Function fungsi,
           Icon(
             icon,
             color: iconColor,
-            size: fontSize,
+            size: fontSize + 6,
           ),
           gapX(context, 1),
           // text(context, label, fontSize: fontSize, textColor: textColor)
           Text(
             label,
-            style: baseFont(context, fontSize: fontSize, textColor: textColor),
+            style: TextStyle(color: textColor, fontSize: fontSize)
+              // style: baseFont(context, fontSize: fontSize, textColor: textColor),
           )
         ],
       ));
@@ -115,18 +116,11 @@ Widget text(BuildContext context, String text,
     FontWeight fontWeight = FontWeight.w400}) {
   return Text(
     text,
-    style: baseFont(context,
-        fontSize: fontSize, textColor: textColor, fontWeight: fontWeight),
-    // style: TextStyle(color: textColor, fontSize: fontSize),
+    // style: GoogleFonts.openSans(
+    //     fontSize: fontSize, color: textColor, fontWeight: fontWeight)
+    style:
+        TextStyle(color: textColor, fontSize: fontSize, fontWeight: fontWeight),
   );
-}
-
-TextStyle baseFont(BuildContext context,
-    {double fontSize = 15,
-    Color textColor = Colors.black54,
-    FontWeight fontWeight = FontWeight.w400}) {
-  return GoogleFonts.openSans(
-      fontSize: fontSize, color: textColor, fontWeight: fontWeight);
 }
 
 SnackBar snackbar(

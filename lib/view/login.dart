@@ -150,7 +150,7 @@ class _LoginState extends State<Login> {
                                   text(context,
                                       'Jika ada kendala silahkan hubungi admin',
                                       fontSize: Helper.parrentHeight(
-                                          constraints, 3.3))
+                                          constraints, 3.5))
                                 ],
                               );
                             },

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:keuangan_rt/base/helper.dart';
-import 'package:keuangan_rt/controller/auth.dart';
-import 'package:keuangan_rt/view/halamanDepan.dart';
-import 'package:keuangan_rt/view/home.dart';
-import 'package:keuangan_rt/view/login.dart';
 import 'package:keuangan_rt/view/splashScreen.dart';
 
 void main() {
@@ -17,21 +14,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // final cekToken = Get.put(CekToken());
-    // cekToken.cek().then((val) =>
-    //     (val == 'Valid Token') ? status.value = true : status.value = false);
 
     return GetMaterialApp(
       title: 'Sistem Keuangan Rt.09/RW.20',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Helper().baseColor),
         useMaterial3: true,
+          scaffoldBackgroundColor: Colors.white,
+          textTheme: GoogleFonts.nunitoSansTextTheme()
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: const Splashscreen(),
-      // home: Obx(
-      //   () => (cekToken.status.value) ? const Home() : const Login(),
-      // ),
     );
   }
 }

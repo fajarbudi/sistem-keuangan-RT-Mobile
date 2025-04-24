@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keuangan_rt/base/component.dart';
 import 'package:keuangan_rt/base/helper.dart';
+import 'package:keuangan_rt/view/halamanDepan.dart';
 import 'package:keuangan_rt/view/home.dart';
 import 'package:keuangan_rt/view/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,7 +64,7 @@ class CekToken extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    cek();
+    // cek();
     super.onInit();
   }
 
@@ -84,7 +85,7 @@ class CekToken extends GetxController {
       //return status
       return res.data['status'];
     } catch (e) {
-      Get.off(() => const Login());
+      Get.off(() => const HalamanDepan());
     }
   }
 }
